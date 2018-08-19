@@ -3,9 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.3",
+    "escape-string-regexp": "^1.0.5",
+    "form-serialize": "^0.7.2",
+    "google-maps-react": "^2.0.2",
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4"
+    "react-google-maps": "^9.4.5",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "sort-by": "^1.2.0",
+    "types": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

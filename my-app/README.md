@@ -4,6 +4,12 @@
 This is the 8th project required for the completion of Google-Udacity Front End Web Development Nanodegree.
 
 
+npm init react-app my-app
+npm install --save prop-types
+npm install --save escape-string-regexp sort-by
+npm install --save react-router-dom
+npm install --save form-serialize
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
