@@ -11,6 +11,8 @@ npm install --save react-router-dom
 npm install --save form-serialize
 
 
+I've used React-goolge-map and Foursquare
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
