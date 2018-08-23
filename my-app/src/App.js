@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import hamburger from './Hamburger_icon.svg';
 import './App.css';
 import './index.css';
 import Map from './components/Map.js'
@@ -115,6 +116,7 @@ class App extends Component {
                   <li>Trending</li>
             </ul>
         </header>
+        <img src={hamburger} className= "hamburger" alt="hamburger"/>
         <div id='map'></div> 
       
       </main>

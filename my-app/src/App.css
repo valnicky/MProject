@@ -28,7 +28,7 @@
 .App-header {
   height: 100vh;
   padding: 20px 0;
-  width: 13%;
+  width: 15%;
   position: absolute;
   height: 100%;
   z-index: 1;
@@ -82,3 +82,39 @@ ul li {
 ul li:first-child {
   border-top: 2px solid #fff;
 }
+
+.hamburger {
+  display: none;
+}
+
+@media screen  and (max-width: 850px) {
+    .App-header{
+       width: 30%;
+    }
+
+    .hamburger {
+      display: none;
+    }
+} 
+
+@media screen  and (max-width: 500px) {
+    .App-header{
+       width: 35%;
+    }
+} 
+
+@media screen  and (max-width: 400px) {
+    .App-header{
+       width: 1%;
+    }
+
+    .hamburger {
+      display: block;
+      position: absolute;
+      width: 30px;
+      margin-left: 12px;
+      margin-top: 52px;
+      z-index: 1;
+      border: 2px solid #003;
+}
+} 
