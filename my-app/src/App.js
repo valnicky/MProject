@@ -5,6 +5,8 @@ import './App.css';
 import './index.css';
 import Map from './components/Map.js'
 import axios from 'axios'
+import ListView from './components/ListView.js'
+import SearchBar from './components/SearchBar.js'
 
 class App extends Component {
   state = {
@@ -77,10 +79,10 @@ class App extends Component {
          marker.addListener('click', function() {
 
           //we set the new content
-      infowindow.setContent(contentString)
+          infowindow.setContent(contentString)
 
           //open infowindow
-        infowindow.open(map, marker);
+          infowindow.open(map, marker);
       });
 
     })
@@ -96,25 +98,10 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1>MADRID</h1>
             <h2 className="App-title">My Neighborhood</h2>
-          <div className='search-filter' tabIndex='0'>
-            <input
-                type='text'
-                placeholder='Search here'
-                aria-label = "Enter location"
-              //  onChange={(event) => props.searchQuery(event.target.value)}     
-            />
-            
-          </div>
-            <ul>
-                  <li>Coffee</li>
-                  <li>Food</li>
-                  <li>Drinks</li>
-                  <li>Shops</li>
-                  <li>Arts</li>
-                  <li>Outdoors</li>
-                  <li>Sights</li>
-                  <li>Trending</li>
-            </ul>
+              <SearchBar/>
+           
+              <ListView/>
+
         </header>
         <img src={hamburger} className= "hamburger" alt="hamburger"/>
         <div id='map'></div> 
@@ -127,12 +114,12 @@ class App extends Component {
 }
 
 function loadScript(url) {
-  var index = window.document.getElementsByTagName("script")[0]
-  var script = window.document.createElement("script")
-  script.src = url
-  script.async = true
-  script.defer = true
-  index.parentNode.insertBefore(script, index)
+    var index = window.document.getElementsByTagName("script")[0]
+    var script = window.document.createElement("script")
+    script.src = url
+    script.async = true
+    script.defer = true
+    index.parentNode.insertBefore(script, index)
 }
 
 export default App; 

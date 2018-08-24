@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+/*import Markers from './Markers.js'
+import InfoWindow from './InfoWindow.js'*/
 
 class Map extends Component {
 
@@ -173,7 +175,8 @@ class Map extends Component {
           containerElement={ <div style={{ height: `100vh`, width: '100%' }} /> }
           mapElement={ <div style={{ height: `100%`, width: `100%` }} /> }
         />
-
+      <Marker/>
+      <InfoWindow/>
       </div>
     );
   }
