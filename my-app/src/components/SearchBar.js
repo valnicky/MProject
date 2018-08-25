@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
 		                type='text'
 		                placeholder='Search here'
 		                aria-label = "Enter location"
-		                  
+
 		            />
             
           	</div>

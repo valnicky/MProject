@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   renderMap = () => {
-     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ&callback=initMap")
+     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ&v=3&callback=initMap")
     window.initMap = this.initMap
   }  
 
@@ -46,7 +46,7 @@ class App extends Component {
         })//, this.renderMap()
     
     }).catch(error => {
-      console.log("ERROR!! " + error)
+      console.log("ERROR! - " + error)
     })
   }
 
@@ -72,6 +72,8 @@ class App extends Component {
         var  marker = new window.google.maps.Marker({
         position: { lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
         map: map,
+        draggable: true,
+        animation: window.google.maps.Animation.DROP,
         title: myVenue.venue.name
       });
 
@@ -83,13 +85,37 @@ class App extends Component {
 
           //open infowindow
           infowindow.open(map, marker);
+
+         var neighborhoods = [];
+      function drop() {
+      clearMarkers();
+        for (var i = 0; i < neighborhoods.length; i++) {
+          addMarkerWithTimeout(neighborhoods[i], i * 200);
+        }
+
+}
+        function addMarkerWithTimeout(position, timeout) {
+        window.setTimeout(function() {
+          marker.push(new window.google.maps.Marker({
+            position: position,
+            map: map,
+            animation: window.google.maps.Animation.DROP
+          }));
+        }, timeout);
+      }
+
+      function clearMarkers() {
+        for (var i = 0; i < marker.length; i++) {
+          marker[i].setMap(null);
+        }
+        marker = [];
+      }
+
       });
 
     })
-
     
   }
-  
 
   render() {
     return (
@@ -103,14 +129,24 @@ class App extends Component {
               <ListView/>
 
         </header>
-        <img src={hamburger} className= "hamburger" alt="hamburger"/>
-        <div id='map'></div> 
-      
+        <img src={hamburger} onClick="toggleHam()" className= "hamburger" alt="hamburger"/>
+        <div id="map"> </div>
       </main>
     );
   }
 
 
+}
+
+function toggleHam() {
+       var x = document.getElementByClassName('.App-header');
+
+        if(x.style.display === 'none') {
+              x.style.display = "block";
+      } else {
+              x.style.display('none'); 
+      }
+   
 }
 
 function loadScript(url) {
