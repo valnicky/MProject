@@ -18,24 +18,13 @@ class App extends Component {
       super(props);
       this.state = {
             // mapIsReady : false,
+            
              showingPlaces: [],
              data: [],
              query: '' 
            }
     }
 
-componentDidMount() {
-      /*  const ApiKey = 'AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ';
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${ApiKey}`;
-        script.async = true;
-        script.defer = true;
-        script.addEventListener('load', () => {
-        this.setState({ mapIsReady: true });
-    });
-
-    document.body.appendChild(script);*/
-  }
 
    componentDidUpdate() {
     if (this.state.mapIsReady) {
@@ -55,12 +44,13 @@ componentDidMount() {
     defaultCenter: { lat: 40.416947, lng: -3.703529 },
     markers: [],*/
     query: '',
-   // infoContent: ""
+    infoContent: ""
   }
    
   componentDidMount() {
-    
-      //  this.addMarkers()
+        this.getVenues()
+        //this.addMarkers()
+
   }
 
 renderMap = () => {
@@ -69,15 +59,25 @@ renderMap = () => {
 }
 
 
-
  initMap= () => {
-    var latlng = new window.google.maps.LatLng(40.416947,  -3.703529 );
+
+      // The location of Uluru
+  var uluru = {lat: 40.416447, lng: -3.702529 };
+  // The map, centered at Uluru
+  var map = new window.google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new window.google.maps.Marker({position: uluru, map: map});
+
+
+
+    //var latlng = new window.google.maps.LatLng(40.416947,  -3.703529 );
     
-    var map = new window.google.maps.Map(document.getElementById('map'), {
-      center: latlng,
+  //  var map = new window.google.maps.Map(document.getElementById('map'), {
+    //  center: latlng,
       //{lat: 40.416947, lng: -3.703529  },
-      zoom: 13
-    })
+  //    zoom: 13
+ //   })
 
     //crete an infoWindow
     var infowindow = new window.google.maps.InfoWindow()
@@ -86,14 +86,17 @@ renderMap = () => {
   this.state.venues.map (myVenue => {
       var contentString = `${myVenue.venue.name}`
 
+ 
     //create a marker
-    var marker = new window.google.maps.Marker({
-              position: {lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
+   /* var marker = new window.google.maps.Marker({
+              //position: {lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
+              position: {lat:40.416447, lng: -3.702529 },
               map: map,
               draggable: true,
               animation: window.google.maps.Animation.DROP,
-              title: myVenue.venue.name
-    });
+              title: "My Marker"
+              //myVenue.venue.name
+    });*/
 
 
     //when we click on our marker this function 'open' will be executed. This is from https://developers.google.com/maps/documentation/javascript/infowindows
@@ -298,19 +301,21 @@ gm_authFailure = () => {alert(`Google Maps API - could not loaded!`); }
 }
 
 
-function loadScript (url) {
-    var index = window.document.getElementsByTagName("script")[0]
-    var script = window.document.createElement("script")
-    script.src = url
 
-   
-    index.parentNode.insertBefore(script, index)
-}
 
 
 /* //"https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ&v=3"
+//function loadScript (url) {
+ //   var index = window.document.getElementsByTagName("script")[0]
+  //  var script = window.document.createElement("script")
+   // script.src = url
+
+   
+ //   index.parentNode.insertBefore(script, index)
+//}
   //script.async = true
    // script.defer = true
 */
 
 export default App; 
+

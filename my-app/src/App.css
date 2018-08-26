@@ -114,8 +114,8 @@ ul li:first-child {
 
 @media screen  and (max-width: 700px) {
     .App-header{
-       height: 50%;
-       margin-top: 40%;
+       height: 120px;
+       margin-top: 100px;
        overflow: hidden;
        overflow-y: scroll;
     }
