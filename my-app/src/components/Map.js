@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
-/*import Markers from './Markers.js'
-import InfoWindow from './InfoWindow.js'*/
+import { withGoogleMap, GoogleMap, withScriptjs } from 'react-google-maps'
+import Markers from './Markers.js'
+import InfoWindow from './InfoWindow.js'
+import PropTypes from 'prop-types'
+import escaperegexp from 'escape-regexp'
 
 class Map extends Component {
+     /* constructor(props) {
+        super(props);
+        this.state = { hasError: false};
+      }
 
-  state = {
+     
+
+      from https://reactjs.org/docs/error-boundaries.html
+componentDidCatch(error, info ) {
+  //display fallback UI
+  this.setState({ hasError: true});
+  //log the error to an error reporting service
+  logErrorToMyService(error, info);
+}*/
+
+
+ /* state = {
       locations: [
         { name: "Plaza Mayor", location: { lat: 40.415363, lng: -3.707398 }},
         { name: "Retiro Park", location: { lat: 40.414335, lng: -3.680908 }},
@@ -148,21 +165,48 @@ class Map extends Component {
       "lat": 40.441573,
       "lng": -3.627135 
     }
-  }*/
+  }
 
       ],
       query: '',
       markers: [],
-      //infoWindow: new this.props.google.maps.InfoWindow()
+      infoWindow: new this.props.google.maps.InfoWindow()
+
+
+      
 
   }
 
+*/
 
 
 
-  render(){
+onClick = (props, marker, e) => {
+  this.setState({
+      location: props,
+      markerActive: marker,
+      showInfo: true
+  })
+}
 
-  	const Map = withGoogleMap(props => (
+        
+
+/*
+key={index}
+lat={lat}
+            lng={lng}
+            index={index}
+            location={location}
+            indexValue={index}
+            venueID={venueID}*/
+        
+          
+    
+
+      
+    	render(){
+
+    const Map = withGoogleMap(props => (
       <GoogleMap
         defaultCenter = { { lat: 40.416947, lng: -3.703529 } }
         defaultZoom = { 13 }
@@ -175,10 +219,19 @@ class Map extends Component {
           containerElement={ <div style={{ height: `100vh`, width: '100%' }} /> }
           mapElement={ <div style={{ height: `100%`, width: `100%` }} /> }
         />
-      <Marker/>
-      <InfoWindow/>
+    
+      <InfoWindow
+          
+        venues={this.props.venues}  
+
+
+
+            />
       </div>
     );
   }
-};
-export default Map;
+       
+  
+}
+
+export default Map

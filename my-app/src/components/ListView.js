@@ -7,7 +7,7 @@ class ListView extends React.Component {
 		var listView = this.props.listView;
 		return (
 
-			<ul>
+		<ul>
                   <li>Coffee</li>
                   <li>Food</li>
                   <li>Drinks</li>

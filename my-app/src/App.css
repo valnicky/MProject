@@ -37,6 +37,7 @@
   border-right: 5px solid #B175FF;
   border-left: 5px solid #F6D4D2;
   text-align: center;
+  display: block;
 }
 
 .App-header h1{
@@ -60,6 +61,11 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.App-logo {
+  text-align: center;
+  margin: 0 auto;
 }
 
 ul {
@@ -87,27 +93,37 @@ ul li:first-child {
   display: none;
 }
 
+.expandMenu-hidden {
+    display: none;
+}
+
 @media screen  and (max-width: 850px) {
     .App-header{
-       width: 30%;
+       width: 15%;
+       font-size: 10px;
+    }
+
+    ul li {
+       padding: 1px 3px;
+       margin: 2px 1px;
     }
 
     .hamburger {
       display: none;
     }
 } 
-
+/*
 @media screen  and (max-width: 500px) {
     .App-header{
        width: 35%;
     }
 } 
-
-@media screen  and (max-width: 400px) {
-    .App-header{
+*/
+@media screen  and (max-width: 700px) {
+   /* .App-header{
        width: 1%;
        display: none;
-    }
+    }*/
 
     .hamburger {
       display: block;
