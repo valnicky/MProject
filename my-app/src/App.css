@@ -38,6 +38,14 @@
   border-left: 5px solid #F6D4D2;
   text-align: center;
   display: block;
+  -webkit-transform: translate(-5px, 0);
+          transform: translate(-5px, 0);
+          transition: transform 2s ease;
+}
+
+.App-header.open{
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
 }
 
 .App-header h1{
@@ -89,9 +97,6 @@ ul li:first-child {
   border-top: 2px solid #fff;
 }
 
-.hamburger {
-  display: none;
-}
 
 .expandMenu-hidden {
     display: none;
@@ -108,30 +113,17 @@ ul li:first-child {
        margin: 2px 1px;
     }
 
-    .hamburger {
-      display: none;
-    }
+    
 } 
-/*
-@media screen  and (max-width: 500px) {
-    .App-header{
-       width: 35%;
-    }
-} 
-*/
-@media screen  and (max-width: 700px) {
-   /* .App-header{
-       width: 1%;
-       display: none;
-    }*/
 
-    .hamburger {
-      display: block;
-      position: absolute;
-      width: 30px;
-      margin-left: 12px;
-      margin-top: 52px;
-      z-index: 1;
-      border: 2px solid #003;
-}
+@media screen  and (max-width: 700px) {
+    .App-header{
+       -webkit-transform: translate(-330, 0);
+               transform: translate(-330, 0);
+    }
+
+    .App-logo {
+      height: 50px;
+    }
+
 } 

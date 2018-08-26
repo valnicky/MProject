@@ -15,7 +15,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
 
- <!-- <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ&v=3" async defer onerror= "mapFail()"></script>-->
+  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ&v=3" async defer onerror= "gm_authFailure()"></script>
 
    
    <!--   Notice the use of %PUBLIC_URL% in the tags above.
@@ -49,6 +49,6 @@
      
   </body>
   <script type="text/javascript">
-  function mapFail() {alert(`Google Maps API - could not loaded!`); };
+  function gm_authFailure() {alert(`Google Maps API - could not loaded! Authentication Failed! Map Will not load correctly`); };
 </script>
 </html>
