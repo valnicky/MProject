@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
 			<div className='search-filter' tabIndex='0'>
 		            <input
 		                type='text'
-		                placeholder='Search here'
+		                placeholder='Search'
 		                aria-label = "Enter location"
 
 		            />

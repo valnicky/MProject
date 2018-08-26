@@ -16,7 +16,6 @@ class ListView extends React.Component {
                   <li>Outdoors</li>
                   <li>Sights</li>
                   <li>Trending</li>
-
             </ul>
 
 

@@ -271,7 +271,7 @@ gm_authFailure = () => {alert(`Google Maps API - could not loaded!`); }
     render() {
     return (
       <main className="App" role="mainContainer">
-          <header className="App-header" id="app-header">
+          <div className="App-header" id="app-header">
               <img src={logo} className="App-logo" alt="logo" />
               <h1>MADRID</h1>
               <h2 className="App-title">My Neighborhood</h2>
@@ -279,8 +279,7 @@ gm_authFailure = () => {alert(`Google Maps API - could not loaded!`); }
              
                 <ListView/>
                 
-                
-          </header>
+          </div>
         
           <Map id="map"
               infoContent={this.state.infoContent}
