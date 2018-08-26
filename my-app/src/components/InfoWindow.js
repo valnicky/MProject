@@ -37,3 +37,43 @@ render(){
     }
 
     export default InfoWindow
+
+
+
+
+
+
+
+
+
+
+    //here we create an infoWindow. This is from developers.google.com/infowindow
+       //  infowindow = new window.google.maps.InfoWindow()
+
+
+     /*   return (
+            
+              <InfoWindow
+              icon={this.props.placeToShow === this.props.myVenue.venue.name && this.props.isOpen ? { url: orange } : { url: blue }}
+              key={this.props.myVenue.venue.name}
+              position={{lat: this.props.myVenue.venue.location.lat, lng: this.props.myVenue.venue.position.lng}}
+              onClick={() => this.props.onToggleOpen(this.props.myVenue.venue.name, this.props.venue)}
+              
+                {this.props.placeToShow === this.props.myVenue.venue.name && this.props.isOpen &&
+                 
+                 onCloseClick={this.props.onToggleOpen}
+                 >
+                    
+                 </InfoWindow>}
+              
+
+        
+            
+
+
+            );*/
+
+
+
+
+   

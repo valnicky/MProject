@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import { Marker } from "react-google-maps";
 
 class Markers extends React.Component {
@@ -50,7 +50,7 @@ onClick={() => this.handleClicks(this.props.venueID)}
     
     			map.setCenter (lonLat, zoom);
 		)
-//	}*/
+//	}
 
-}
+}*/
 //export default Markers;
