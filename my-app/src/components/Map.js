@@ -68,6 +68,7 @@ lat={lat}
         defaultCenter = { { lat: 40.416947, lng: -3.703529 } }
         defaultZoom = { 13 }
       >
+      <Marker/>
       </GoogleMap>
    ));
     return(
@@ -75,6 +76,7 @@ lat={lat}
         <Map
           containerElement={ <div style={{ height: `100vh`, width: '100%' }} /> }
           mapElement={ <div style={{ height: `100%`, width: `100%` }} /> }
+          
         />
     
       <InfoWindow

@@ -18,16 +18,18 @@ class App extends Component {
       super(props);
       this.state = {
             // mapIsReady : false,
-            
+             map: [],
+             marker: [], 
              showingPlaces: [],
              data: [],
              query: '' 
            }
+
     }
 
 
    componentDidUpdate() {
-    if (this.state.mapIsReady) {
+   /* if (this.state.mapIsReady) {
       // Display the map
       this.map = new window.google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
@@ -35,8 +37,11 @@ class App extends Component {
         mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       });
      
-    }
+
+    }*/
   }
+
+
 
   state = {
     venues: [],
@@ -44,7 +49,9 @@ class App extends Component {
     defaultCenter: { lat: 40.416947, lng: -3.703529 },
     markers: [],*/
     query: '',
-    infoContent: ""
+    infoContent: "",
+    map: [],
+    marker: []
   }
    
   componentDidMount() {
@@ -59,36 +66,18 @@ renderMap = () => {
 }
 
 
- initMap= () => {
+  
 
-      // The location of Uluru
-  var uluru = {lat: 40.416447, lng: -3.702529 };
-  // The map, centered at Uluru
-  var map = new window.google.maps.Map(
-      document.getElementById('map'), {zoom: 4, center: uluru});
-  // The marker, positioned at Uluru
-  var marker = new window.google.maps.Marker({position: uluru, map: map});
-
-
-
-    //var latlng = new window.google.maps.LatLng(40.416947,  -3.703529 );
-    
-  //  var map = new window.google.maps.Map(document.getElementById('map'), {
-    //  center: latlng,
-      //{lat: 40.416947, lng: -3.703529  },
-  //    zoom: 13
- //   })
-
-    //crete an infoWindow
-    var infowindow = new window.google.maps.InfoWindow()
-
-    //we display the markers
-  this.state.venues.map (myVenue => {
-      var contentString = `${myVenue.venue.name}`
-
+ initMap = () => {
  
+  var  map = new window.google.maps.Map(document.getElementById('map'), {
+    center: {lat: 40.416947, lng: -3.703529 },
+    zoom: 13
+    });
+
+
     //create a marker
-   /* var marker = new window.google.maps.Marker({
+    var marker = new window.google.maps.Marker({
               //position: {lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
               position: {lat:40.416447, lng: -3.702529 },
               map: map,
@@ -96,7 +85,19 @@ renderMap = () => {
               animation: window.google.maps.Animation.DROP,
               title: "My Marker"
               //myVenue.venue.name
-    });*/
+    });
+
+addMarker(marker);
+
+
+  //markers.push(addMarker(marker));
+
+    //crete an infoWindow
+    var infowindow = new window.google.maps.InfoWindow()
+
+    //we display the markers
+  this.state.venues.map (myVenue => {
+      var contentString = `${myVenue.venue.name}`
 
 
     //when we click on our marker this function 'open' will be executed. This is from https://developers.google.com/maps/documentation/javascript/infowindows
@@ -118,6 +119,12 @@ renderMap = () => {
     })
 }
 
+addMarker = (data) => {
+     new window.google.maps.Marker({
+        position: new window.google.maps.LatLng(data.lat, data.lng),
+        map: map
+    });
+}
 
 /*
 var marker, i;
@@ -286,7 +293,7 @@ gm_authFailure = () => {alert(`Google Maps API - could not loaded!`); }
         
           <Map id="map"
               infoContent={this.state.infoContent}
-
+          
           />
 
 
