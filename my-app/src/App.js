@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import hamburger from './Hamburger_icon.svg';
 import './App.css';
 import './index.css';
 import Map from './components/Map.js'
@@ -14,7 +13,7 @@ import ReactDOM from 'react-dom'
 
 
 class App extends Component {
-    constructor(props) {
+    /*constructor(props) {
       super(props);
       this.state = {
             // mapIsReady : false,
@@ -25,16 +24,16 @@ class App extends Component {
              query: '' 
            }
 
-    }
+    }*/
 
 
    componentDidUpdate() {
    /* if (this.state.mapIsReady) {
       // Display the map
       this.map = new window.google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 12,
-        mapTypeId: window.google.maps.MapTypeId.ROADMAP,
+        center: { lat: 40.416947, lng: -3.703529},
+        zoom: 13,
+        mapTypeId: window.google.maps.MapTypeId.ROADMAP
       });
      
 
@@ -45,27 +44,51 @@ class App extends Component {
 
   state = {
     venues: [],
-    /*defaultZoom: 13,
+    defaultZoom: 13,
+    defaultMarkerIcon: {},
+    markerIcon: {},
+    isOpen: false,
     defaultCenter: { lat: 40.416947, lng: -3.703529 },
-    markers: [],*/
+    markers: [],
     query: '',
     infoContent: "",
     map: [],
-    marker: []
+    marker: [],
+    mapTypeId: window.google.maps.MapTypeId.ROADMAP
   }
    
   componentDidMount() {
         this.getVenues()
         //this.addMarkers()
-
+        function handleErrors(response) {
+          if(!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        }
   }
+
+componentWillMount() {
+  let icon = {
+    url: 'http://maps.gstatic.com/mapfiles/markers2/boost-marker-mapview.png'
+  }
+    this.setState({
+      markerIcon: icon,
+      defaultMarkerIcon: icon
+    })
+}
 
 renderMap = () => {
   // loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ&v=3&callback=initMap")
     window.initMap = this.initMap
 }
 
-
+addMarker = (data) => {
+     new window.google.maps.Marker({
+        position: new window.google.maps.LatLng(data.lat, data.lng),
+        map: this.map
+    });
+}
   
 
  initMap = () => {
@@ -83,13 +106,14 @@ renderMap = () => {
               map: map,
               draggable: true,
               animation: window.google.maps.Animation.DROP,
-              title: "My Marker"
+              title: "My Marker",
+              icon: image
               //myVenue.venue.name
     });
 
-addMarker(marker);
+//addMarker(marker);
 
-
+ var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
   //markers.push(addMarker(marker));
 
     //crete an infoWindow
@@ -119,12 +143,7 @@ addMarker(marker);
     })
 }
 
-addMarker = (data) => {
-     new window.google.maps.Marker({
-        position: new window.google.maps.LatLng(data.lat, data.lng),
-        map: map
-    });
-}
+
 
 /*
 var marker, i;
@@ -277,28 +296,56 @@ gm_authFailure = () => {alert(`Google Maps API - could not loaded!`); }
               // )
             }*/
 
+/*handleMarkerClickEvent = (event, latlng, index ) => {
+    this.setState ({
+      selectedMarkerIndex = index,
+      center = latlng //the clicked marker
+    })
+}   onMarkerClick= this.handleMarkerClickEvent*/
+
+handleErrors = (response) => {
+  if(!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}
 
     render() {
     return (
-      <main className="App" role="mainContainer">
+      <main className="App" role="main">
           <div className="App-header" id="app-header">
               <img src={logo} className="App-logo" alt="logo" />
               <h1>MADRID</h1>
               <h2 className="App-title">My Neighborhood</h2>
-                <SearchBar/>
+                <SearchBar 
+                      locations= {this.state.locations}
+                      onUserDidSearch = {this.updateLocations}
+                      onHandleLocationSelected = {this.handleLocationSelected}
+                      onItemClick = {this.handleLocationItemClick}
+                />
              
                 <ListView/>
                 
           </div>
-        
-          <Map id="map"
+        {( navigator.onLine) && 
+         ( <Map id="map" role="application" aria-labelledby="rg-label"
+          tabIndex="0"  
               infoContent={this.state.infoContent}
-          
-          />
+              zoom= {this.state.zoom}
+              markerIcon= {this.state.markerIcon}
+              onMarkerClick = {this.handleMarkerClicked}
+              locations= {this.state.locations}
+              showInfoIndex = {this.state.showInfoIndex}
+          />)}
+          {(!navigator.onLine) && (<div>
+            <h2>Map is offline</h2>
+            </div>)}
 
+         
+          
 
       </main>
-    );
+    )
   }
 
 

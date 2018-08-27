@@ -5,21 +5,40 @@ import InfoWindow from './InfoWindow.js'
 import PropTypes from 'prop-types'
 import escaperegexp from 'escape-regexp'
 
-class Map extends Component {
-     /* constructor(props) {
+class Map extends React.Component {
+     constructor(props) {
         super(props);
-        this.state = { hasError: false};
+        this.state = { position: {
+        lat: this.lat,
+        lng: this.lng
+        }
       }
+    }
 
-     
+     componentDidMount() {
+  this.loadMap();
+     }
 
-      from https://reactjs.org/docs/error-boundaries.html
+loadMap() {
+  if (this.props && this.props.google) {
+    const{lat,lng} = this.state.position;
+      // google is available
+      const {google} = this.props;
+      const maps = google.maps;
+
+      const mapRef = this.refs.map;
+    //  const node = ReactDOM.findDOMNode(mapRef);
+    }
+}
+
+
+      //from https://reactjs.org/docs/error-boundaries.html
 componentDidCatch(error, info ) {
   //display fallback UI
   this.setState({ hasError: true});
   //log the error to an error reporting service
-  logErrorToMyService(error, info);
-}*/
+//  logErrorToMyService(error, info);
+}
 
 
  /* state = {
@@ -57,8 +76,18 @@ lat={lat}
             indexValue={index}
             venueID={venueID}*/
         
-          
-    
+      /*   renderChildren =  () =>{
+            const {children} = this.props;
+
+            if(!children) return;
+
+             return React.Children.map(children, c => {
+      return React.cloneElement(c, {
+        map: this.map,
+        google: this.props.google,
+        mapCenter: this.state.position
+          }
+  }}   {this.renderChildren()} */
 
       
     	render(){
@@ -68,17 +97,26 @@ lat={lat}
         defaultCenter = { { lat: 40.416947, lng: -3.703529 } }
         defaultZoom = { 13 }
       >
-      <Marker/>
+     <Markers/>
       </GoogleMap>
    ));
     return(
-      <div>
+      <div ref="map">
+        
+      
         <Map
           containerElement={ <div style={{ height: `100vh`, width: '100%' }} /> }
           mapElement={ <div style={{ height: `100%`, width: `100%` }} /> }
           
-        />
-    
+        >
+          
+            <Markers />
+           <Markers position= {this.position}/>
+
+
+
+
+        </Map>
       <InfoWindow
           
         venues={this.props.venues}  

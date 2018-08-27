@@ -1,11 +1,28 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Marker } from "react-google-maps";
 
 class Markers extends React.Component {
 	//var markers = this.props.markers;
 
+renderMarker() {
+    let {
+      map, google, position, mapCenter
+    } = this.props;
+
+    let pos = position || mapCenter;
+    position = new google.maps.LatLng(pos.lat, pos.lng);
+
+    const pref = {
+        map: map,
+        position: position
+      };
+      this.marker = new google.maps.Marker(pref);
+    
+  }
 	 
-//	render() {
+	render() {
+    return null;
+
 		/*const Marker = new window.google.maps.Marker(
 				position:{lat: props.marker.position.lat, lng: props.marker.position.lng},
 				
@@ -49,8 +66,14 @@ onClick={() => this.handleClicks(this.props.venueID)}
 				markers.addMarker(new OpenLayers.Marker(lonLat));
     
     			map.setCenter (lonLat, zoom);
-		)
-//	}
+		)*/
+	}
 
+}
+
+/*Marker.propTypes = {
+  position: React.PropTypes.object,
+  map: React.PropTypes.object
 }*/
-//export default Markers;
+
+export default Markers;
