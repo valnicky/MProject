@@ -117,13 +117,15 @@ lat={lat}
 
 
         </Map>
-      <InfoWindow
-          
-        venues={this.props.venues}  
+      <InfoWindow title= {this.props.contentString}
+              latlng = {this.props.position}
+              venueId = {this.props.title}  
+              venues={this.props.venues}  
 
 
 
             />
+
       </div>
     );
   }

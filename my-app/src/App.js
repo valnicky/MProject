@@ -10,7 +10,8 @@ import ListView from './components/ListView.js'
 import SearchBar from './components/SearchBar.js'
 import { withGoogleMap, GoogleMap, Marker, withScriptjs } from 'react-google-maps';
 import ReactDOM from 'react-dom'
-
+import PropTypes from 'prop-types'
+import escaperegexp from 'escape-regexp'
 
 class App extends Component {
     /*constructor(props) {
@@ -53,8 +54,8 @@ class App extends Component {
     query: '',
     infoContent: "",
     map: [],
-    marker: [],
-    mapTypeId: window.google.maps.MapTypeId.ROADMAP
+    marker: []
+    //mapTypeId: window.google.maps.MapTypeId.ROADMAP
   }
    
   componentDidMount() {
@@ -101,14 +102,14 @@ addMarker = (data) => {
 
     //create a marker
     var marker = new window.google.maps.Marker({
-              //position: {lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
-              position: {lat:40.416447, lng: -3.702529 },
+              position: {lat: this.myVenue.venue.location.lat, lng: this.myVenue.venue.location.lng},
+              //position: {lat:40.416447, lng: -3.702529 },
               map: map,
               draggable: true,
               animation: window.google.maps.Animation.DROP,
-              title: "My Marker",
+              title: this.myVenue.venue.name,
               icon: image
-              //myVenue.venue.name
+              
     });
 
 //addMarker(marker);
@@ -120,7 +121,7 @@ addMarker = (data) => {
     var infowindow = new window.google.maps.InfoWindow()
 
     //we display the markers
-  this.state.venues.map (myVenue => {
+      this.state.venues.map (myVenue => {
       var contentString = `${myVenue.venue.name}`
 
 
@@ -311,6 +312,15 @@ handleErrors = (response) => {
 }
 
     render() {
+
+        let showingLocations
+          /*  if (this.state.query) {
+              const match = new RegExp(escapeRegExp(this.state.query, 'i'))
+              showingLocations = this.state.venues.filter((venue) => match.test(venue.venue.name))
+            } else {
+              showingLocations = this.state.venues
+            }*/
+
     return (
       <main className="App" role="main">
           <div className="App-header" id="app-header">
@@ -318,10 +328,15 @@ handleErrors = (response) => {
               <h1>MADRID</h1>
               <h2 className="App-title">My Neighborhood</h2>
                 <SearchBar 
+                      venues={this.state.venues}
+                      query={this.state.query}
+                      getVenues = {this.getVenues}
+                      showingLocations={showingLocations}
                       locations= {this.state.locations}
                       onUserDidSearch = {this.updateLocations}
                       onHandleLocationSelected = {this.handleLocationSelected}
                       onItemClick = {this.handleLocationItemClick}
+                      updateQuery={this.updateQuery}
                 />
              
                 <ListView/>
@@ -335,6 +350,7 @@ handleErrors = (response) => {
               markerIcon= {this.state.markerIcon}
               onMarkerClick = {this.handleMarkerClicked}
               locations= {this.state.locations}
+              showingLocations={showingLocations}
               showInfoIndex = {this.state.showInfoIndex}
           />)}
           {(!navigator.onLine) && (<div>
