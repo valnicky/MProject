@@ -335,7 +335,7 @@ render() {
               zoom= {this.state.zoom}
               markerIcon= {this.state.markerIcon}
               onMarkerClick = {this.handleMarkerClicked}
-              locations= {this.state.locations}
+              locations= {this.state.position}
               showingLocations={showingLocations}
               showInfoIndex = {this.state.showInfoIndex}
 
