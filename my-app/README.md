@@ -13,6 +13,16 @@ npm install axios
 
 I've used React-goolge-map and Foursquare
 
+##Setup Instructions
+
+    git clone https://github.com/valnicky/NeighborhoodMap-react-Project8Nanodegree.git
+    cd NeighborhoodMap-react-Project8Nanodegree
+    cd myApp
+    npm install
+    npm start
+
+A Live Preview will opens via http://localhost:3000/ by your default browser!
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

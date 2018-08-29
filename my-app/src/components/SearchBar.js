@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
 
 	updateQuery = (query) => {
 		this.setState({
-			query: query
+		query: query
 		})
 	}
 
@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
 		            <input
 		                type='text'
 		                placeholder='Search'
-		                aria-label = "Enter location"
+		                aria-label = "Search location"
 
 		            />
             

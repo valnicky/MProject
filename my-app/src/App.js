@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import './index.css';
 import Map from './components/Map.js'
-//import Markers from './components/Markers.js'
+import Markers from './components/Markers.js'
 //import infoWindow from './components/InfoWindow.js'
 import axios from 'axios'
 import ListView from './components/ListView.js'
@@ -37,7 +37,6 @@ class App extends Component {
         mapTypeId: window.google.maps.MapTypeId.ROADMAP
       });
      
-
     }*/
   }
 
@@ -74,8 +73,8 @@ componentWillMount() {
     url: 'http://maps.gstatic.com/mapfiles/markers2/boost-marker-mapview.png'
   }
     this.setState({
-      markerIcon: icon,
-      defaultMarkerIcon: icon
+    markerIcon: icon,
+    defaultMarkerIcon: icon
     })
 }
 
@@ -112,7 +111,7 @@ addMarker = (data) => {
               
     });
 
-//addMarker(marker);
+ // addMarker( this.myVenue.venue.location.lat,  this.myVenue.venue.location.lng);
 
  var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
   //markers.push(addMarker(marker));
@@ -145,7 +144,6 @@ addMarker = (data) => {
 }
 
 
-
 /*
 var marker, i;
 
@@ -166,12 +164,12 @@ var marker, i;
 */
 
 //update state function
-updateQuery = (query)=>{
+  updateQuery = (query)=>{
   this.setState({query: query})
 }
 
 //a reset function
-clearQuery = ()=>{
+  clearQuery = ()=>{
   this.setState({query: '' })
 }
  
@@ -206,22 +204,21 @@ clearQuery = ()=>{
    
   }
 
-
  
 /*
 addMarkers = () => {
 
-             var neighMark = [];
-          function drop() {
-          clearMarkers();
-            for (var i = 0; i < neighMark.length; i++) {
-                  addMarkerWithTimeout(neighMark[i], i * 200);
+             var neighMarkers = [];
+             function drop() {
+             clearMarkers();
+            for (var i = 0; i < neighMarkers.length; i++) {
+                  addMarkerWithTimeout(neighMarkers[i], i * 200);
             }
 
 
         function addMarkerWithTimeout(position, timeout) {
-        window.setTimeout(function() {
-              marker.push(new window.google.maps.Marker({
+                 window.setTimeout(function() {
+                marker.push(new window.google.maps.Marker({
                 position: position,
                 map: this.map,
                 animation: window.google.maps.Animation.DROP
@@ -236,27 +233,21 @@ addMarkers = () => {
         marker = [];
       }
 
-      
-
     }
     
   }
 
 
-
-
-
-
   var marker, i;
 for (i = 0; i < locations.length; i++) {
-  marker = new google.maps.Marker({
-    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    map: map,
-    label: String(locations[i][3])
-  });
-  gmarkers.push(marker);
-  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    return function() {
+      marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+      map: map,
+      label: String(locations[i][3])
+    });
+      gmarkers.push(marker);
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
       infowindow.setContent(locations[i][0]);
       infowindow.open(map, marker);
     }
@@ -272,53 +263,48 @@ $('#list li').each(function(i, e) {
 */
 
 
-
 gm_authFailure = () => {alert(`Google Maps API - could not loaded!`); }
 
 
-
-
 /*var image = {
-  url: place.icon,
-  size: new window.google.maps.Size(71, 71),
-  origin: new window.google.maps.Point(0, 0),
-  anchor: new window.google.maps.Point(17, 34),
-  scaledSize: new window.google.maps.Size(25, 25)
+    url: url.icon,
+    size: new window.google.maps.Size(71, 71),
+    origin: new window.google.maps.Point(0, 0),
+    anchor: new window.google.maps.Point(17, 34),
+    scaledSize: new window.google.maps.Size(25, 25)
 };
-
 
 */
 
 
-
  /* showingMarkers = this.state.markers.filter((myMarker) => {
-                console.log(myMarker.getElement().data.toLowerCase());
+                  console.log(myMarker.getElement().data.toLowerCase());
                // return(match.test(myMarker.getElement().data.toLowerCase())
               // )
             }*/
 
 /*handleMarkerClickEvent = (event, latlng, index ) => {
-    this.setState ({
+      this.setState ({
       selectedMarkerIndex = index,
       center = latlng //the clicked marker
     })
 }   onMarkerClick= this.handleMarkerClickEvent*/
 
 handleErrors = (response) => {
-  if(!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
+      if(!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response;
 }
 
-    render() {
+render() {
 
         let showingLocations
           /*  if (this.state.query) {
-              const match = new RegExp(escapeRegExp(this.state.query, 'i'))
-              showingLocations = this.state.venues.filter((venue) => match.test(venue.venue.name))
+                  const match = new RegExp(escapeRegExp(this.state.query, 'i'))
+                  showingLocations = this.state.venues.filter((venue) => match.test(venue.venue.name))
             } else {
-              showingLocations = this.state.venues
+                 showingLocations = this.state.venues
             }*/
 
     return (
@@ -352,26 +338,18 @@ handleErrors = (response) => {
               locations= {this.state.locations}
               showingLocations={showingLocations}
               showInfoIndex = {this.state.showInfoIndex}
+
           />)}
           {(!navigator.onLine) && (<div>
             <h2>Map is offline</h2>
             </div>)}
-
-         
           
 
       </main>
     )
   }
 
-
-
-
-
 }
-
-
-
 
 
 /* //"https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBxakJgyoP72UvsoJ6F-lpWCSGKl20IQ&v=3"
@@ -383,7 +361,7 @@ handleErrors = (response) => {
    
  //   index.parentNode.insertBefore(script, index)
 //}
-  //script.async = true
+    //script.async = true
    // script.defer = true
 */
 

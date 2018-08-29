@@ -16,29 +16,29 @@ class Map extends React.Component {
     }
 
      componentDidMount() {
-  this.loadMap();
+          this.loadMap();
      }
 
-loadMap() {
-  if (this.props && this.props.google) {
-    const{lat,lng} = this.state.position;
-      // google is available
-      const {google} = this.props;
-      const maps = google.maps;
+    loadMap() {
+      if (this.props && this.props.google) {
+        const{lat,lng} = this.state.position;
+          // google is available
+          const {google} = this.props;
+          const maps = google.maps;
 
-      const mapRef = this.refs.map;
-    //  const node = ReactDOM.findDOMNode(mapRef);
+          const mapRef = this.refs.map;
+        //  const node = ReactDOM.findDOMNode(mapRef);
+        }
     }
-}
 
 
-      //from https://reactjs.org/docs/error-boundaries.html
-componentDidCatch(error, info ) {
-  //display fallback UI
-  this.setState({ hasError: true});
-  //log the error to an error reporting service
-//  logErrorToMyService(error, info);
-}
+          //from https://reactjs.org/docs/error-boundaries.html
+      componentDidCatch(error, info ) {
+            //display fallback UI
+            this.setState({ hasError: true});
+            //log the error to an error reporting service
+          //  logErrorToMyService(error, info);
+          }
 
 
  /* state = {
@@ -51,10 +51,6 @@ componentDidCatch(error, info ) {
         { name: "Prado Museum", location: { lat:  40.413780, lng: -3.692127 }},
         { name: "Plaza Puerta del Sol", location: { lat: 40.416729, lng:  -3.703339 }},
         { name: "Atocha", location: { lat:  40.398396, lng: -3.681477 }}
-  
-  
- 
-
 
 
 onClick = (props, marker, e) => {
@@ -65,9 +61,7 @@ onClick = (props, marker, e) => {
   })
 }
 
-        
 
-/*
 key={index}
 lat={lat}
             lng={lng}
@@ -90,39 +84,40 @@ lat={lat}
   }}   {this.renderChildren()} */
 
       
-    	render(){
+  render(){
 
-    const Map = withGoogleMap(props => (
-      <GoogleMap
-        defaultCenter = { { lat: 40.416947, lng: -3.703529 } }
-        defaultZoom = { 13 }
-      >
-     <Markers/>
-      </GoogleMap>
-   ));
-    return(
-      <div ref="map">
-        
+      const Map = withGoogleMap(props => (
+        <GoogleMap
+          defaultCenter = { { lat: 40.416947, lng: -3.703529 } }
+          defaultZoom = { 13 }
+        >
+       <Markers/>
+        </GoogleMap>
+     ));
+      return(
+        <div ref="map">
+          
       
         <Map
           containerElement={ <div style={{ height: `100vh`, width: '100%' }} /> }
           mapElement={ <div style={{ height: `100%`, width: `100%` }} /> }
-          
+   
+
         >
           
-            <Markers />
+            <Markers 
+
+                marker ={this.props.marker}
+            />
            <Markers position= {this.position}/>
-
-
+            <Markers position={{ lat: -34.397, lng: 150.644 }} />
 
 
         </Map>
-      <InfoWindow title= {this.props.contentString}
+        <InfoWindow title= {this.props.contentString}
               latlng = {this.props.position}
               venueId = {this.props.title}  
               venues={this.props.venues}  
-
-
 
             />
 
